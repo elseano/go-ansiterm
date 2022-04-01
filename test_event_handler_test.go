@@ -168,6 +168,11 @@ func (h *TestAnsiEventHandler) IND() error {
 	return nil
 }
 
+func (h *TestAnsiEventHandler) OSCPut(b byte) error {
+	h.recordCall("OSCPut", []string{string(b)})
+	return nil
+}
+
 func (h *TestAnsiEventHandler) Flush() error {
 	return nil
 }

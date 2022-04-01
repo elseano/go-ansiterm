@@ -98,6 +98,11 @@ func TestSelectGraphicRendition(t *testing.T) {
 	funcCallParamHelper(t, []byte{'0', ';', '1', ';', '2', 'm'}, "CsiEntry", "Ground", []string{"SGR([0 1 2])"})
 }
 
+func TestOSC(t *testing.T) {
+	funcCallParamHelper(t, []byte{'0', ';', 'T', 'i', 't', 'l', 'e', 7}, "OscString", "Ground", []string{"OSCPut([0])", "OSCPut([;])", "OSCPut([T])", "OSCPut([i])", "OSCPut([t])", "OSCPut([l])", "OSCPut([e])"})
+	funcCallParamHelper(t, []byte{'0', ';', 'T', 'i', 't', 'l', 'e', 0x9C}, "OscString", "Ground", []string{"OSCPut([0])", "OSCPut([;])", "OSCPut([T])", "OSCPut([i])", "OSCPut([t])", "OSCPut([l])", "OSCPut([e])"})
+}
+
 func TestScroll(t *testing.T) {
 	scrollHelper(t, 'S', "SU")
 	scrollHelper(t, 'T', "SD")

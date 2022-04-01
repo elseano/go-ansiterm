@@ -7,6 +7,7 @@ type oscStringState struct {
 func (oscState oscStringState) Handle(b byte) (s state, e error) {
 	oscState.parser.logf("OscString::Handle %#x", b)
 	nextState, err := oscState.baseState.Handle(b)
+
 	if nextState != nil || err != nil {
 		return nextState, err
 	}
@@ -16,7 +17,15 @@ func (oscState oscStringState) Handle(b byte) (s state, e error) {
 		return oscState.parser.ground, nil
 	}
 
+	oscState.parser.oscDispatch()
+
 	return oscState, nil
+}
+
+func (oscState oscStringState) Transition(s state) error {
+	oscState.baseState.Transition(s)
+
+	return nil
 }
 
 // See below for OSC string terminators for linux

@@ -105,6 +105,12 @@ func (ap *AnsiParser) csiDispatch() error {
 
 }
 
+func (ap *AnsiParser) oscDispatch() error {
+	ap.logf("oscDispatch currentChar: %#x", ap.context.currentChar)
+
+	return ap.eventHandler.OSCPut(ap.context.currentChar)
+}
+
 func (ap *AnsiParser) print() error {
 	return ap.eventHandler.Print(ap.context.currentChar)
 }

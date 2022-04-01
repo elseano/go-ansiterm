@@ -85,6 +85,9 @@ type AnsiEventHandler interface {
 	// Reverse Index
 	RI() error
 
+	// Put a char while in an OSC command
+	OSCPut(b byte) error
+
 	// Flush updates from previous commands
 	Flush() error
 }
