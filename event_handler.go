@@ -86,7 +86,7 @@ type AnsiEventHandler interface {
 	RI() error
 
 	// Put a char while in an OSC command
-	OSCPut(b byte) error
+	OSC(b []byte) error
 
 	// Flush updates from previous commands
 	Flush() error

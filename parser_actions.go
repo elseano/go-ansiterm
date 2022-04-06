@@ -105,10 +105,16 @@ func (ap *AnsiParser) csiDispatch() error {
 
 }
 
+func (ap *AnsiParser) oscBuffer() {
+	ap.context.oscBuffer = append(ap.context.oscBuffer, ap.context.currentChar)
+}
+
 func (ap *AnsiParser) oscDispatch() error {
 	ap.logf("oscDispatch currentChar: %#x", ap.context.currentChar)
+	buf := ap.context.oscBuffer
+	ap.context.oscBuffer = []byte{}
 
-	return ap.eventHandler.OSCPut(ap.context.currentChar)
+	return ap.eventHandler.OSC(buf)
 }
 
 func (ap *AnsiParser) print() error {

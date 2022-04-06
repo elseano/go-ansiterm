@@ -168,8 +168,8 @@ func (h *TestAnsiEventHandler) IND() error {
 	return nil
 }
 
-func (h *TestAnsiEventHandler) OSCPut(b byte) error {
-	h.recordCall("OSCPut", []string{string(b)})
+func (h *TestAnsiEventHandler) OSC(b []byte) error {
+	h.recordCall("OSC", []string{string(b)})
 	return nil
 }
 

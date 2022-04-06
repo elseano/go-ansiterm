@@ -4,4 +4,5 @@ type ansiContext struct {
 	currentChar byte
 	paramBuffer []byte
 	interBuffer []byte
+	oscBuffer   []byte
 }

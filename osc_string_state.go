@@ -17,13 +17,14 @@ func (oscState oscStringState) Handle(b byte) (s state, e error) {
 		return oscState.parser.ground, nil
 	}
 
-	oscState.parser.oscDispatch()
+	oscState.parser.oscBuffer()
 
 	return oscState, nil
 }
 
 func (oscState oscStringState) Transition(s state) error {
 	oscState.baseState.Transition(s)
+	oscState.parser.oscDispatch()
 
 	return nil
 }
